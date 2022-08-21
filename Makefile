@@ -28,6 +28,7 @@ all:
 	@echo "gbuild               - GCP: Build the App $(IMAGE) docker image"
 	@echo "gdeploy              - GCP: Deploy the app $(IMAGE) image to Cloud Run"
 	@echo 
+	@echo "qlist                - GCP: list all services/applications deployed in Google Could Run"
 	@echo "gclean               - GCP: Clean resources created in this entire $(IMAGE) application"
 	@echo 
 	@echo "gcall                - GCP: Call the Cloud Run service App $(IMAGE) via GET /"
@@ -58,6 +59,10 @@ gdeploy:
 		--platform managed \
 		--region $(GCP_REGION) \
 		$(GCP_AUTH_MODEL)
+
+glist:
+	@echo "* $(GCP_PROJECT_ID): listing Google Cloud Run deployed services/apps"
+	gcloud run services list
 
 gclean:
 	@echo "* $(GCP_PROJECT_ID): Deleting registry image/container $(IMAGE) + Cloud Run job $(IMAGE): in $(GCP_REGION)"
