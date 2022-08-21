@@ -1,7 +1,12 @@
-Dockerfile
 README.md
+Dockerfile
+Makefile
+requirements.txt
+LICENSE
 *.pyc
 *.pyo
 *.pyd
+*.tmp
+*.bkup
 __pycache__
-Makefile
+_gsdata_
