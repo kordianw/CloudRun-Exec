@@ -1,15 +1,18 @@
 #
 # Using the Python 3 image
 #
+#FROM python:slim 	# can't use :slim, as we want to have curl
 FROM python:3.7
 
-# Copy local code to the container image.
+# Copy local code to the container image
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-# Install production dependencies.
-RUN pip install Flask gunicorn
+# Install required Python modules
+RUN pip install -r requirements.txt
+
+# start-up the app, when the container launches
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
 
 #  #
