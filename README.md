@@ -1,5 +1,6 @@
 # CloudRun-Exec
 Execute shell/bash commands in a serverless manner on a Container in the public cloud
+- currently supports: local Docker build
 - currently supports: Google Cloud Run (GCP's managed Knative/Kubernetes)
 
 # Further Tutorials
