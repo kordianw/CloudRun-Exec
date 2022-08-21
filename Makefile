@@ -1,12 +1,17 @@
-# Configuration
-CLOUD_HELPER_SCRIPT=setup-aws-gcp.sh
+#
+# Makefile for CloudRun-Exec
+#
+
+# General Configuration
+CLOUD_HELPER_SCRIPT=setup-aws-gcp.sh 		# used to auth+login to `gcloud'
 
 # GCP Configuration:
-GCP_PROJECT_ID=$(shell gcloud config get-value core/project)
 GCP_IMAGE=hw-info
-GCP_REGION=us-central1
-GCP_AUTH_MODEL='--no-allow-unauthenticated'
-#GCP_AUTH_MODEL='--allow-unauthenticated'
+GCP_REGION=us-central1 				# default region as it's low-co2 and central to all of US
+GCP_AUTH_MODEL='--no-allow-unauthenticated'	# secure: web-service only works with auth-token header
+#GCP_AUTH_MODEL='--allow-unauthenticated'	# insecure: web-service is open to all (only URL is needed)
+# GCP: What is the GCP Project ID?
+GCP_PROJECT_ID=$(shell gcloud config get-value core/project)
 
 # Help (use with `make all'):
 all:
