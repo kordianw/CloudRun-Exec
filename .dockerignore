@@ -1,12 +1,13 @@
-README.md
-Dockerfile
-Makefile
-requirements.txt
+*.md
 LICENSE
+logs/
+.git
 *.pyc
 *.pyo
 *.pyd
 *.tmp
 *.bkup
+*.iso
+.cache
 __pycache__
 _gsdata_
