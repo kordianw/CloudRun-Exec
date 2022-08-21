@@ -23,6 +23,7 @@ CLOUD_HELPER_SCRIPT=setup-aws-gcp.sh 		# used to auth+login to `gcloud'
 all:
 	@echo "build                - Docker (local): Build the App $(IMAGE) docker image"
 	@echo "list                 - Docker (local): list the current Docker images in the registry"
+	@echo "run                  - Docker (local): run the $(IMAGE) app locally via Docker"
 	@echo 
 	@echo "glogin               - GCP: pre-build: login to GCP in order to be able to do the build"
 	@echo "gbuild               - GCP: Build the App $(IMAGE) docker image"
@@ -39,11 +40,15 @@ all:
 # Make Targets:
 build:
 	@echo "* Building Python Docker image for app $(IMAGE)"
-	docker image build . --build-arg="app_name=$(IMAGE)" -t "$(IMAGE):latest"
+	docker image build . --build-arg="app_name=$(IMAGE)" -t "$(IMAGE)"
+
+run:
+	@echo "* Running Python Docker image for app $(IMAGE)"
+	docker run -it --rm -e PORT=8080 --name "$(IMAGE)-running-app" "$(IMAGE)"
 
 list:
 	@echo "* Listing Docker image for app $(IMAGE)"
-	docker image list .
+	docker image list
 
 gbuild:
 	@echo "* $(GCP_PROJECT_ID): Building Python Cloud Run (authenticated) service for app $(IMAGE): in $(GCP_REGION)"
